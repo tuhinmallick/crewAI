@@ -9,8 +9,7 @@ def test_task_tool_reflect_agent_tools():
 	@tool
 	def fake_tool() -> None:
 		"Fake tool"
-		pass
-	
+
 	researcher = Agent(
 		role="Researcher",
 		goal="Make the best research and analysis on content about AI and AI agents",
@@ -23,7 +22,7 @@ def test_task_tool_reflect_agent_tools():
 		description="Give me a list of 5 interesting ideas to explore for na article, what makes them unique and interesting.",
 		agent=researcher
 	)
-	
+
 	assert task.tools == [fake_tool]
 
 def test_task_tool_takes_precedence_ove_agent_tools():
@@ -32,13 +31,11 @@ def test_task_tool_takes_precedence_ove_agent_tools():
 	@tool
 	def fake_tool() -> None:
 		"Fake tool"
-		pass
 
 	@tool
 	def fake_task_tool() -> None:
 		"Fake tool"
-		pass
-	
+
 	researcher = Agent(
 		role="Researcher",
 		goal="Make the best research and analysis on content about AI and AI agents",
@@ -53,5 +50,5 @@ def test_task_tool_takes_precedence_ove_agent_tools():
 		tools=[fake_task_tool],
 		allow_delegation=False
 	)
-	
+
 	assert task.tools == [fake_task_tool]
